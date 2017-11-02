@@ -1,0 +1,3 @@
+2017-11-02 13:41:16.800 WARN  com.netflix.config.sources.URLConfigurationSource Line:121 - No URLs will be polled as dynamic configuration sources.
+2017-11-02 13:41:16.815 WARN  com.netflix.config.sources.URLConfigurationSource Line:121 - No URLs will be polled as dynamic configuration sources.
+2017-11-02 13:41:17.394 WARN  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer Line:62  - Unable to start LiveReload server

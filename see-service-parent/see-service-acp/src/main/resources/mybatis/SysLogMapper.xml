@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.see.service.acp.mapper.SysLogMapper">
+	<resultMap id="BaseResultMap" type="com.see.service.acp.model.SysLog">
+		<id column="SLG_ID" jdbcType="INTEGER" property="slgId" />
+		<result column="URL" jdbcType="VARCHAR" property="url" />
+		<result column="PARAMETER" jdbcType="VARCHAR" property="parameter" />
+		<result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="TYPE" jdbcType="INTEGER" property="type" />
+		<result column="IP" jdbcType="VARCHAR" property="ip" />
+		<result column="typeText" jdbcType="VARCHAR" property="typeText" />
+		<result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SLG_ID, URL, PARAMETER, LOGIN_NAME, NAME, TYPE, IP,
+		CREATE_DATE,
+		(SELECT LABELS FROM sys_dict WHERE VALUE=sys_log.TYPE AND
+		TYPE='sys_log_type') as typeText
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_log
+		where SLG_ID = #{slgId,jdbcType=INTEGER}
+	</select>
+
+
+</mapper>
