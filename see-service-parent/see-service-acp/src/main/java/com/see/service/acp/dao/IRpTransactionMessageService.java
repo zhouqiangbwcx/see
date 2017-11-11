@@ -7,12 +7,7 @@ import com.see.common.core.utils.PageBean;
 import com.see.common.core.utils.PageParam;
 import com.see.web.entity.acp.RpTransactionMessage;
 
-/**
- * <b>功能说明: </b>
- * 
- * @author Peter <a href="http://www.roncoo.com">龙果学院(www.roncoo.com)</a>
- */
-public interface ITransactionMessageService {
+public interface IRpTransactionMessageService {
 
 	/**
 	 * 预存储消息.
