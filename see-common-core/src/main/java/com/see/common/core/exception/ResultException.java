@@ -1,6 +1,6 @@
-package com.see.core.common.exception;
+package com.see.common.core.exception;
 
-import com.see.core.common.entitys.ResultBody;
+import com.see.common.core.entitys.ResultBody;
 
 /**
  * 结果异常，会被 ExceptionHandler 捕捉并返回给前端

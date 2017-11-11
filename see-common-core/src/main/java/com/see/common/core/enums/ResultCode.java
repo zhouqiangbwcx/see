@@ -1,4 +1,4 @@
-package com.see.core.common.enums;
+package com.see.common.core.enums;
 
 public enum  ResultCode {
 	SUCCESS("0000","处理成功")  

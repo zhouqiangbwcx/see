@@ -1,5 +1,5 @@
 
-package com.see.core.common.utils;
+package com.see.common.core.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

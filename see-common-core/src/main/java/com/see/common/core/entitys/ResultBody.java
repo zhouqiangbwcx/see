@@ -1,6 +1,6 @@
-package com.see.core.common.entitys;
+package com.see.common.core.entitys;
 
-import com.see.core.common.enums.ResultCode;
+import com.see.common.core.enums.ResultCode;
 
 public class ResultBody {
 

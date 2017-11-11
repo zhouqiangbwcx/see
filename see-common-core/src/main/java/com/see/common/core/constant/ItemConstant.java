@@ -1,4 +1,4 @@
-package com.see.core.common.constant;
+package com.see.common.core.constant;
 
 public class ItemConstant {
 	/**

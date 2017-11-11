@@ -1,4 +1,4 @@
-package com.see.core.common.utils;
+package com.see.common.core.utils;
 
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
@@ -7,7 +7,7 @@ import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
-import com.see.core.common.cahe.JedisClient;
+import com.see.common.core.cahe.JedisClient;
 
 public class UUIDBuild {
 

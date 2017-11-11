@@ -1,9 +1,9 @@
-package com.see.core.common.utils;
+package com.see.common.core.utils;
 
 import com.alibaba.fastjson.JSONObject;
-import com.see.core.common.entitys.ResultBody;
-import com.see.core.common.enums.ResultCode;
-import com.see.core.common.exception.ResultException;
+import com.see.common.core.entitys.ResultBody;
+import com.see.common.core.enums.ResultCode;
+import com.see.common.core.exception.ResultException;
 
 public class ResultUtils {
 
