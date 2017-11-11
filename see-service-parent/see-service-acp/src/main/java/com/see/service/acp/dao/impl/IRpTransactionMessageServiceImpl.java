@@ -2,11 +2,14 @@ package com.see.service.acp.dao.impl;
 
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
 import com.see.common.core.utils.PageBean;
 import com.see.common.core.utils.PageParam;
 import com.see.service.acp.dao.IRpTransactionMessageService;
 import com.see.web.entity.acp.RpTransactionMessage;
 
+@Service
 public class IRpTransactionMessageServiceImpl implements IRpTransactionMessageService {
 
 	@Override

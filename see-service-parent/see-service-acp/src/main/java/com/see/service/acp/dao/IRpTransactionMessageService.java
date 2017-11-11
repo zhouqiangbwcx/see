@@ -62,6 +62,6 @@ public interface IRpTransactionMessageService {
 	/**
 	 * 获取分页数据
 	 */
-	PageBean listPage(PageParam pageParam, Map<String, Object> paramMap);
+	public PageBean listPage(PageParam pageParam, Map<String, Object> paramMap);
 
 }
