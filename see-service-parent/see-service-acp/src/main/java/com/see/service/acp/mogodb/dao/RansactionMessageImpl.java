@@ -15,8 +15,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
-import com.see.core.common.utils.Page;
-import com.see.core.common.utils.StringUtils;
+import com.see.common.core.utils.PageBean;
+import com.see.common.core.utils.StringUtils;
 import com.see.service.acp.mogodb.entity.RansactionMessageEntity;
 
 @Component
@@ -59,9 +59,9 @@ public class RansactionMessageImpl implements RansactionMessageDao {
 	}
 
 	@Override
-	public Page getPageRansactionMessage(Page page) {
+	public PageBean getPageRansactionMessage(PageBean page) {
 		Criteria criteria = new Criteria();
-		Map<String, Object> map = page.getParameter();
+		Map<String, Object> map = page.getCountResultMap();
 		// 消费队列
 		if (StringUtils.isNoNullOrEmpty(map.get("consumerQueue"))) {
 			criteria.andOperator(Criteria.where("consumerQueue").is(map.get("consumerQueue")));
@@ -84,8 +84,8 @@ public class RansactionMessageImpl implements RansactionMessageDao {
 			criteria.andOperator(new Criteria("remark").regex(".*?" + map.get("remark") + ".*"));
 		}
 
-		int start = page.getStartRow();
-		int limit = page.getEndRow();
+		int start = page.getBeginPageIndex();
+		int limit = page.getEndPageIndex();
 
 		Query query = new Query(criteria);
 		query.limit(limit);// 分页条数设置
@@ -95,7 +95,7 @@ public class RansactionMessageImpl implements RansactionMessageDao {
 
 		List<RansactionMessageEntity> list = this.mongoTemplate.find(query, RansactionMessageEntity.class);
 		long count = this.mongoTemplate.count(query, RansactionMessageEntity.class);
-		page.setList(list);
+		page.setRecordList(list);
 		page.setTotalCount(Integer.valueOf(count + ""));
 		return page;
 	}

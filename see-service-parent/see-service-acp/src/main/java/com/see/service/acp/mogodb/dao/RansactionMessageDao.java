@@ -1,6 +1,6 @@
 package com.see.service.acp.mogodb.dao;
 
-import com.see.core.common.utils.Page;
+import com.see.common.core.utils.PageBean;
 import com.see.service.acp.mogodb.entity.RansactionMessageEntity;
 
 public interface RansactionMessageDao {
@@ -47,6 +47,6 @@ public interface RansactionMessageDao {
 	 * @param page
 	 * @return
 	 */
-	public Page getPageRansactionMessage(Page page);
+	public PageBean getPageRansactionMessage(PageBean page);
 
 }
