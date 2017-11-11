@@ -1,4 +1,4 @@
-package com.see.service.rabbitMQ;
+package com.see.service.rabbitMQ.sender;
 
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
