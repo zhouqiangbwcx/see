@@ -10,13 +10,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
-import com.see.core.common.entitys.ResultBody;
-import com.see.core.common.utils.Page;
-import com.see.core.common.utils.ResultUtils;
-import com.see.service.acp.mapper.SysLogMapper;
-import com.see.service.acp.model.SysLog;
-import com.see.service.acp.mogodb.dao.RansactionMessageDao;
-import com.see.service.rabbitMQ.HelloSender;
+import com.see.common.core.entitys.ResultBody;
+import com.see.common.core.utils.PageBean;
+import com.see.common.core.utils.ResultUtils;
+import com.see.service.acp.core.mapper.SysLogMapper;
+import com.see.service.acp.core.model.SysLog;
+import com.see.service.acp.core.mogodb.dao.RansactionMessageDao;
+import com.see.service.acp.core.mogodb.sender.HelloSender;
+
+
 
 @RestController
 @RequestMapping("/api")
@@ -46,10 +48,10 @@ public class ApiController {
 
 	@RequestMapping(value = "/mongo", method = RequestMethod.GET)
 	public ResultBody mongo() {
-		Page page = new Page();
+		PageBean page = new PageBean();
 		Map<String, Object> parameter = new HashMap<String, Object>();
 		parameter.put("areadlyDead", "no");
-		page.setParameter(parameter);
+		page.setCountResultMap(parameter);
 		page = ransactionMessageDao.getPageRansactionMessage(page);
 		System.out.println("第oo个：" + JSONObject.toJSONString(page));
 		return ResultUtils.success(page);
