@@ -10,6 +10,6 @@ public class HelloSender {
 	private AmqpTemplate template;
 
 	public void send() {
-		template.convertAndSend("see_acp", "hello,rabbit~");
+		template.convertAndSend("see_acp", "中文的。。。。");
 	}
 }
