@@ -12,10 +12,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.alibaba.fastjson.JSONObject;
-import com.see.core.common.utils.Page;
+import com.see.common.core.utils.PageBean;
 import com.see.service.Application;
-import com.see.service.acp.mogodb.dao.RansactionMessageDao;
-import com.see.service.acp.mogodb.entity.RansactionMessageEntity;
+import com.see.service.acp.core.mogodb.dao.RansactionMessageDao;
+import com.see.service.acp.core.mogodb.entity.RansactionMessageEntity;
 
 @SpringBootTest(classes = Application.class)
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -40,13 +40,13 @@ public class TestMongoDB {
 		ransactionMessageEntity.setConsumerQueue("test");
 		ransactionMessageEntity.setAreadlyDead("no");
 		ransactionMessageDao.saveRansactionMessage(ransactionMessageEntity);
-		RansactionMessageEntity entity = ransactionMessageDao.findRansactionMessageByMessageId(uuid);
+		RansactionMessageEntity entity = null;// ransactionMessageDao.findRansactionMessageByMessageId(uuid);
 
 		System.out.println("第x个：" + JSONObject.toJSONString(entity));
-		Page page = new Page();
+		PageBean page = new PageBean();
 		Map<String, Object> parameter = new HashMap<String, Object>();
 		parameter.put("areadlyDead", "no");
-		page.setParameter(parameter);
+		//page.setParameter(parameter);
 		page = ransactionMessageDao.getPageRansactionMessage(page);
 		System.out.println("第oo个：" + JSONObject.toJSONString(page));
 	}
