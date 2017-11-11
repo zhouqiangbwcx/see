@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.see.core.common.entitys.ResultBody;
-import com.see.core.common.enums.ResultCode;
-import com.see.core.common.exception.ResultException;
-import com.see.core.common.utils.ResultUtils;
+import com.see.common.core.entitys.ResultBody;
+import com.see.common.core.enums.ResultCode;
+import com.see.common.core.exception.ResultException;
+import com.see.common.core.utils.ResultUtils;
 
 /**
  * @author Chery
