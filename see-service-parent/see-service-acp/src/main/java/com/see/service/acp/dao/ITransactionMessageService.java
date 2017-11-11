@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.see.common.core.utils.PageBean;
 import com.see.common.core.utils.PageParam;
-import com.see.web.message.entity.RpTransactionMessage;
+import com.see.web.entity.acp.RpTransactionMessage;
 
 /**
  * <b>功能说明: </b>
