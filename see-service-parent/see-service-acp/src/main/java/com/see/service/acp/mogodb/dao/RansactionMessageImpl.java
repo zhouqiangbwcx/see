@@ -102,8 +102,8 @@ public class RansactionMessageImpl implements RansactionMessageDao {
 
 	/*
 	 * public long getPagCount(List<Condition> conditions) { Query query = new
-	 * Query(); if (conditions != null && conditions.size() > 0) { for
-	 * (Condition condition : conditions) {
+	 * Query(); if (conditions != null && conditions.size() > 0) { for (Condition
+	 * condition : conditions) {
 	 * query.addCriteria(Criteria.where(condition.getKey()).is(condition.
 	 * getValue())); } } return count(query, PageInfo.class); }
 	 */
