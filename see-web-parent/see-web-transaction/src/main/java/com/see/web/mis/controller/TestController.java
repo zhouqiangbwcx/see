@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.see.core.common.cahe.JedisClient;
-import com.see.core.common.utils.UUIDBuild;
+import com.see.common.core.cahe.JedisClient;
+import com.see.common.core.utils.UUIDBuild;
 
 @Controller
 @RequestMapping("/goodsBrand")
