@@ -1,5 +1,5 @@
 
-package com.see.web.message.entity;
+package com.see.web.entity.acp;
 
 import com.see.common.core.entity.BaseEntity;
 
