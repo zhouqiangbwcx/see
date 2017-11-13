@@ -5,14 +5,15 @@ import java.util.Map;
 
 import com.see.common.core.utils.PageBean;
 import com.see.common.core.utils.PageParam;
-import com.see.web.entity.acp.RpTransactionMessage;
+import com.see.service.acp.core.mogodb.entity.RpTransactionMessage;
+import com.see.web.acp.dto.rpTransactionMessage.RpTransactionMessageDTO;
 
 public interface IRpTransactionMessageService {
 
 	/**
 	 * 预存储消息.
 	 */
-	public int saveMessageWaitingConfirm(RpTransactionMessage rpTransactionMessage);
+	public void saveMessageWaitingConfirm(RpTransactionMessageDTO rpTransactionMessageDTO);
 
 	/**
 	 * 确认并发送消息.
@@ -22,17 +23,10 @@ public interface IRpTransactionMessageService {
 	/**
 	 * 存储并发送消息.
 	 */
-	public int saveAndSendMessage(RpTransactionMessage rpTransactionMessage);
+	public void saveAndSendMessage(RpTransactionMessageDTO rpTransactionMessageDTO);
 
-	/**
-	 * 直接发送消息.
-	 */
-	public void directSendMessage(RpTransactionMessage rpTransactionMessage);
 
-	/**
-	 * 重发消息.
-	 */
-	public void reSendMessage(RpTransactionMessage rpTransactionMessage);
+
 
 	/**
 	 * 根据messageId重发某条消息.
@@ -57,7 +51,7 @@ public interface IRpTransactionMessageService {
 	/**
 	 * 重发某个消息队列中的全部已死亡的消息.
 	 */
-	public void reSendAllDeadMessageByQueueName(String queueName, int batchSize);
+	public void reSendAllDeadMessageByQueueName(String queueName);
 
 	/**
 	 * 获取分页数据

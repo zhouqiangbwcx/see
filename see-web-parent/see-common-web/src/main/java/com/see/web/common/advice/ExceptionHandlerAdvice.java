@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.see.common.core.entitys.ResultBody;
-import com.see.common.core.enums.ResultCode;
-import com.see.common.core.exception.ResultException;
-import com.see.common.core.utils.ResultUtils;
+
+import com.see.common.core.exception.BizException;
 
 /**
  * @author Chery
@@ -26,11 +25,11 @@ public class ExceptionHandlerAdvice {
 		logger.error("统一异常 start" + e.toString());
 		logger.error(e);
 		e.printStackTrace();
-		if (e instanceof ResultException) {
-			ResultException liuluException = (ResultException) e;
-			return ResultUtils.warn(liuluException.getState(), liuluException.getMessage(), liuluException.getData());
+		if (e instanceof BizException) {
+			BizException liuluException = (BizException) e;
+			return new ResultBody(liuluException.getCode(), liuluException.getMsg());
 		}
 		logger.error("统一异常 end" + e.getMessage());
-		return ResultUtils.warn(ResultCode.EXCEPTION, e.getMessage());
+		return new ResultBody(9999, e.getMessage());
 	}
 }

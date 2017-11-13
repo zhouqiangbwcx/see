@@ -23,7 +23,7 @@ public class PageParam implements Serializable {
 	/**
 	 * 最大每页记录数(100).
 	 */
-	public static final int MAX_PAGE_SIZE = 10000;
+	public static final int MAX_PAGE_SIZE = 100;
 
 	private int pageNum = DEFAULT_PAGE_NUM; // 当前页数
 

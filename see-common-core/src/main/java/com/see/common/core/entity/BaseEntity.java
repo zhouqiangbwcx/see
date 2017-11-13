@@ -4,6 +4,8 @@ package com.see.common.core.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.see.common.core.utils.UUIDBuild;
+
 public class BaseEntity implements Serializable {
 
 	/**
@@ -11,7 +13,7 @@ public class BaseEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String id;// 主键ID.
+	private String id=UUIDBuild.getUUID();// 主键ID.
 	private Integer version = 0;// 版本号默认为0
 	private String status;// 状态 PublicStatusEnum
 	private String creater;// 创建人.
