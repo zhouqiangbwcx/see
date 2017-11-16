@@ -7,19 +7,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.see.common.core.entitys.ResultBody;
-import com.see.service.acp.core.mapper.SysLogMapper;
-import com.see.service.acp.core.model.SysLog;
 import com.see.service.acp.core.rabbitmq.sender.HelloSender;
+import com.see.service.acp.dao.IRpTransactionMessageService;
 
 @RestController
 @RequestMapping("/api")
 public class ApiController {
 
-	@Autowired
-	private SysLogMapper sysLogMapper;
+	//@Autowired
+	//private SysLogMapper sysLogMapper;
 
 	@Autowired
 	private HelloSender helloSender;
+
+	@Autowired
+	private IRpTransactionMessageService rpTransactionMessageService;
 
 	/*
 	 * @Autowired private RansactionMessageDao ransactionMessageDao;
@@ -27,15 +29,15 @@ public class ApiController {
 
 	@RequestMapping(value = "/select", method = RequestMethod.GET)
 	public ResultBody get(@RequestParam(defaultValue = "1") Integer slgId) {
-		SysLog sysLog = sysLogMapper.selectByPrimaryKey(slgId);
+		//SysLog sysLog = sysLogMapper.selectByPrimaryKey(slgId);
 
-		return new ResultBody(sysLog);
+		return new ResultBody();
 	}
 
 	/*
 	 * @RequestMapping(value = "/send", method = RequestMethod.GET) public
-	 * ResultBody send() { helloSender.send(); return ResultUtils.success("xxxxx");
-	 * }
+	 * ResultBody send() { helloSender.send(); return
+	 * ResultUtils.success("xxxxx"); }
 	 * 
 	 * @RequestMapping(value = "/mongo", method = RequestMethod.GET) public
 	 * ResultBody mongo() { PageBean page = new PageBean(); Map<String, Object>

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.see.common.core.cahe.JedisClient;
 import com.see.common.core.entitys.ResultBody;
 import com.see.common.core.utils.PageBean;
 import com.see.common.core.utils.PageParam;
@@ -27,6 +28,11 @@ public class IRpTransactionMessageServiceImpl implements IRpTransactionMessageSe
 	private RpTransactionMessageDao rpTransactionMessageDao;
 	@Autowired
 	private AccountSender accountSender;
+
+	@Autowired
+	private JedisClient jedisClient;
+
+	private final String REDISKEY_RP = "RP";
 
 	/**
 	 * 预存储消息.
@@ -53,11 +59,16 @@ public class IRpTransactionMessageServiceImpl implements IRpTransactionMessageSe
 		if (message == null) {
 			throw new MessageBizException(MessageBizException.SAVA_MESSAGE_IS_NULL, "根据消息id查找的消息为空");
 		}
-		message.setStatus(AcpEnum.RPTRANSACTIONMESSAGE_STATUS_SENDING.name());
-		message.setEditTime(new Date());
+		if (StringUtils.isNullOrEmpty(jedisClient.get(REDISKEY_RP + messageId))) {
+			message.setStatus(AcpEnum.RPTRANSACTIONMESSAGE_STATUS_SENDING.name());
+			message.setEditTime(new Date());
+			rpTransactionMessageDao.editRpTransactionMessageById(message);// 修改
 
-		rpTransactionMessageDao.editRpTransactionMessageById(message);// 修改
-		accountSender.recharge(message);// 发送
+			jedisClient.set(REDISKEY_RP + messageId,
+					JSONObject.toJSONString(rpTransactionMessageDao.findRpTransactionMessageByMessageId(messageId)), 5);
+
+			accountSender.recharge(message);// 发送
+		}
 
 	}
 
@@ -81,7 +92,7 @@ public class IRpTransactionMessageServiceImpl implements IRpTransactionMessageSe
 			rtm.setStatus(AcpEnum.RPTRANSACTIONMESSAGE_STATUS_SENDING.name());
 			rtm.setAreadlyDead(AcpEnum.AREADLYDEAD_NO.name());
 			rpTransactionMessageDao.saveRpTransactionMessage(rtm);
-			accountSender.recharge(rtm);// 发送
+			confirmAndSendMessage(rtm.getMessageId());// 确认并发送消息.
 		} else {
 			throw new MessageBizException(MessageBizException.SAVA_MESSAGE_IS_NO_NULL, "消息的消费队列已经存在 ");
 		}
@@ -93,11 +104,13 @@ public class IRpTransactionMessageServiceImpl implements IRpTransactionMessageSe
 	 */
 	@Override
 	public void reSendMessageByMessageId(String messageId) {
-		final RpTransactionMessage message = getMessageByMessageId(messageId);
-		message.setEditTime(new Date());
+		if (StringUtils.isNullOrEmpty(jedisClient.get(REDISKEY_RP + messageId))) {
+			final RpTransactionMessage message = getMessageByMessageId(messageId);
+			message.setEditTime(new Date());
 
-		rpTransactionMessageDao.editRpTransactionMessageById(message);
-		accountSender.recharge(message);// 发送
+			rpTransactionMessageDao.editRpTransactionMessageById(message);
+			accountSender.recharge(message);// 发送
+		}
 	}
 
 	/**
